@@ -1,26 +1,15 @@
-package Web_Drink_Store.webstore.entity;
+package Web_Drink_Store.webstore.dto;
 
 import Web_Drink_Store.webstore.enums.CategoryStatus;
-import jakarta.persistence.*;
 
-@Entity
-@Table(name = "categories")
-public class Category {
+public class CategoryDTO {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String name;
-
     private String description;
+    private CategoryStatus status;
 
-    @Enumerated(EnumType.STRING)
-    private CategoryStatus status = CategoryStatus.ACTIVE;
-
-    private boolean isDeleted = false;
-
-    public Category() {
+    public CategoryDTO() {
     }
 
     public Long getId() {
@@ -53,13 +42,5 @@ public class Category {
 
     public void setStatus(CategoryStatus status) {
         this.status = status;
-    }
-
-    public boolean isDeleted() {
-        return isDeleted;
-    }
-
-    public void setDeleted(boolean deleted) {
-        isDeleted = deleted;
     }
 }
