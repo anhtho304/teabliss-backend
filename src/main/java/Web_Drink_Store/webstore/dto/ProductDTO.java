@@ -1,44 +1,29 @@
-package Web_Drink_Store.webstore.entity;
+package Web_Drink_Store.webstore.dto;
 
 import Web_Drink_Store.webstore.enums.ProductStatus;
-import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 
-@Entity
-@Table(name = "products")
-public class Product {
+public class ProductDTO {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String name;
-
-    @Column(precision = 15, scale = 2)
     private BigDecimal price;
-
     private Integer stockQuantity;
-
-    @Column(columnDefinition = "TEXT")
     private String description;
-
     private String imageUrl;
+    private ProductStatus status;
+    private Long categoryId;
 
-    @Enumerated(EnumType.STRING)
-    private ProductStatus status = ProductStatus.ACTIVE;
-
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "category_id", nullable = false)
-    private Category category;
-
-    private boolean isDeleted = false;
-
-    public Product() {
+    public ProductDTO() {
     }
 
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -89,19 +74,11 @@ public class Product {
         this.status = status;
     }
 
-    public Category getCategory() {
-        return category;
+    public Long getCategoryId() {
+        return categoryId;
     }
 
-    public void setCategory(Category category) {
-        this.category = category;
-    }
-
-    public boolean isDeleted() {
-        return isDeleted;
-    }
-
-    public void setDeleted(boolean deleted) {
-        isDeleted = deleted;
+    public void setCategoryId(Long categoryId) {
+        this.categoryId = categoryId;
     }
 }
